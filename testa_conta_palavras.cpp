@@ -24,7 +24,7 @@ wstring toWString(const string& s) {
 TEST_CASE( "Testa ler palavra", "[single-file]" ) {
 	string teste1 = "teste";
 	escreveArquivo(teste1);
-    REQUIRE( toWString(teste1) == lePalavra() );
+    REQUIRE( toWString(teste1) == leArquivo() );
 	escreveArquivo("");
 
 
@@ -33,7 +33,7 @@ TEST_CASE( "Testa ler palavra", "[single-file]" ) {
 TEST_CASE( "Testa ler mais de uma palavra", "[single-file]" ) {
 	string teste2 = "duas palavras";
 	escreveArquivo(teste2);
-    REQUIRE( toWString(teste2) == lePalavra() );
+    REQUIRE( toWString(teste2) == leArquivo() );
 	escreveArquivo("");
 
 

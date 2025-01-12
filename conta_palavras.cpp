@@ -14,15 +14,15 @@
  *  Descrever o que a funcao faz
  */ 
 
-wstring lePalavra() {
+wstring leArquivo() {
     wifstream inputFile("texto.txt"); 
-    wstring palavra;  
+    wstring linha;  
 
     if (inputFile.is_open()) { 
-        inputFile >> palavra;
+        getline(inputFile, linha);
     } 
 
-    return palavra;  
+    return linha;  
 }
 
 

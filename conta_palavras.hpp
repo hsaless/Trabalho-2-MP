@@ -4,4 +4,4 @@
 #include <sstream>
 using namespace std;
  
- wstring lePalavra( );
+ wstring leArquivo( );
