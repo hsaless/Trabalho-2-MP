@@ -17,12 +17,20 @@
 wstring leArquivo() {
     wifstream inputFile("texto.txt"); 
     wstring linha;  
+	wstring texto;
 
     if (inputFile.is_open()) { 
-        getline(inputFile, linha);
+		bool flag = true;
+        while (getline(inputFile, linha)) {
+            if (!flag) {
+                texto += L"\n";  
+            }
+            texto += linha;  
+            flag = false;  
+        }
     } 
 
-    return linha;  
+    return texto;  
 }
 
 
