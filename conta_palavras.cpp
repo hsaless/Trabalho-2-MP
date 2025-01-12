@@ -14,9 +14,16 @@
  *  Descrever o que a funcao faz
  */ 
 
-wstring lePalavra( )
-{
-	return L"" ; 
+wstring lePalavra() {
+    wifstream inputFile("texto.txt"); 
+    wstring palavra;  
+
+    if (inputFile.is_open()) { 
+        inputFile >> palavra;
+    } 
+
+    return palavra;  
 }
+
 
 
