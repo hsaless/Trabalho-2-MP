@@ -1,3 +1,5 @@
-int VerificaVelha( int velha[3][3] ); 
+#include <iostream>
+#include <string>
+using namespace std;
  
-
+ wstring lePalavra( );

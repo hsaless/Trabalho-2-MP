@@ -3,20 +3,31 @@
  * \file testa_velha.cpp
  */
 
-#include "velha.hpp"
+#include "conta_palavras.hpp"
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-  
+
+void escreveArquivo(string text) {
+    ofstream inputFile("texto.txt");
+    inputFile << text;
+    inputFile.close();
+}
 
 
-TEST_CASE( "Testa velha", "[single-file]" ) {
-	int teste1[3][3]= {   { 2, 0, 1 }, 
-	                      { 2, 0, 1 },
-						  { 0, 2, 1 }
-					  };
-    REQUIRE( VerificaVelha(teste1) == 1 );
+wstring toWString(const string& s) {
+    wstring wstr(s.begin(), s.end());
+    return wstr;
+}
+
+
+TEST_CASE( "Testa ler palavra", "[single-file]" ) {
+	string teste1 = "teste";
+	escreveArquivo(teste1);
+    REQUIRE( toWString(teste1) == lePalavra() );
 
 
 } 
+
+
  

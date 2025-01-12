@@ -1,9 +1,10 @@
 /**
- * \file  velha.cpp
+ * \file  conta_palavras.cpp
  */
 
  
-#include "velha.hpp"
+#include "conta_palavras.hpp"
+
 
 /** 
  * @brief verifica situacao do jogo da velha  
@@ -13,9 +14,9 @@
  *  Descrever o que a funcao faz
  */ 
 
-int VerificaVelha( int velha[3][3] )
+wstring lePalavra( )
 {
-	return 0; /*!< retorna zero para teste */ 
+	return L"" ; 
 }
 
 
