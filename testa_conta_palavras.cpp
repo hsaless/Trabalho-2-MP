@@ -39,4 +39,13 @@ TEST_CASE( "Testa ler mais de uma palavra", "[single-file]" ) {
 
 } 
 
+TEST_CASE( "Testa ler mais de uma linha", "[single-file]" ) {
+	string teste3 = "linha 1\nlinha 2\nlinha 3";
+	escreveArquivo(teste3);
+    REQUIRE( toWString(teste3) == leArquivo() );
+	escreveArquivo("");
+
+
+} 
+
  
