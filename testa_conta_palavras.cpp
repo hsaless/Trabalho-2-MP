@@ -91,3 +91,23 @@ TEST_CASE( "Testa se ele retorna todas as palavras se tem pontuação na frase",
 
 
 }
+
+TEST_CASE( "Testa a contagem de cada palavra", "[single-file]" ) {
+	string teste6 = "esse eh um\n teste! para. ler\n todas as palavras";
+	escreveArquivo(teste6);
+	vector<pair<wstring, int>> esperado_t6 = { 
+        {L"esse", 1}, 
+        {L"eh", 1}, 
+        {L"um", 1}, 
+        {L"teste", 1}, 
+        {L"para", 1}, 
+        {L"ler", 1}, 
+        {L"todas", 1}, 
+        {L"as", 1}, 
+        {L"palavras", 1}
+    };
+    REQUIRE( esperado_t6 == contadorPalavras() );
+	escreveArquivo("");
+
+
+}

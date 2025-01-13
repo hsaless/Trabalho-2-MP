@@ -71,6 +71,16 @@ vector<wstring> separaPalavras(){
 
 }
 
+vector<pair<wstring, int>> contadorPalavras() {
+    vector<wstring> palavras = separaPalavras();
+    vector<pair<wstring, int>> resultado = {};
+    return resultado;
+
+    
+}
+
+
+
 
 
 

@@ -11,3 +11,5 @@ using namespace std;
 wstring leArquivo( );
  
 vector<wstring> separaPalavras();
+
+vector<pair<wstring, int>> contadorPalavras();
