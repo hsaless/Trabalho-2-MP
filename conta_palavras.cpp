@@ -74,6 +74,18 @@ vector<wstring> separaPalavras(){
 vector<pair<wstring, int>> contadorPalavras() {
     vector<wstring> palavras = separaPalavras();
     vector<pair<wstring, int>> resultado = {};
+    for (const auto& palavra : palavras) {
+        auto it = find_if(resultado.begin(), resultado.end(),[&palavra](const pair<wstring, int>& p) {
+            return p.first == palavra;
+        });
+
+        if (it != resultado.end()) {
+            it->second++;
+        } else {
+            resultado.push_back(make_pair(palavra, 1));
+        }
+    }
+
     return resultado;
 
     
