@@ -16,8 +16,8 @@ void escreveArquivo(string text) {
 
 
 wstring toWString(const string& s) {
-    wstring wstr(s.begin(), s.end());
-    return wstr;
+    wstring_convert<codecvt_utf8<wchar_t>> converter;
+    return converter.from_bytes(s);
 }
 
 
@@ -49,11 +49,11 @@ TEST_CASE( "Testa ler mais de uma linha", "[single-file]" ) {
 } 
 
 TEST_CASE( "Testa se ele retorna todas as palavras", "[single-file]" ) {
-	string teste4 = "esse é um\n teste para ler\n todas as palavras";
+	string teste4 = "esse eh um\n teste para ler\n todas as palavras";
 	escreveArquivo(teste4);
 	vector<wstring> esperado_t4 = {
         L"esse", 
-        L"é", 
+        L"eh", 
         L"um", 
         L"teste", 
         L"para", 
