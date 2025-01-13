@@ -48,4 +48,23 @@ TEST_CASE( "Testa ler mais de uma linha", "[single-file]" ) {
 
 } 
 
+TEST_CASE( "Testa se ele retorna todas as palavras", "[single-file]" ) {
+	string teste4 = "esse é um\n teste para ler\n todas as palavras";
+	escreveArquivo(teste4);
+	vector<wstring> esperado_t4 = {
+        L"esse", 
+        L"é", 
+        L"um", 
+        L"teste", 
+        L"para", 
+        L"ler", 
+        L"todas", 
+        L"as", 
+        L"palavras"
+    };
+    REQUIRE( esperado_t4 == separaPalavras() );
+	escreveArquivo("");
+
+
+} 
  
