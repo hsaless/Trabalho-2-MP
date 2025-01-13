@@ -155,3 +155,25 @@ TEST_CASE( "Testa a contagem de cada palavra caso tenha a mesma palavra repetida
 
 
 }
+
+TEST_CASE( "Testa se o retorno da contagem de cada palavra é ordenada ", "[single-file]" ) {
+	string teste8 = "esse eh um\n teste! para. ler teste\n todas teste as para Palavras teste e palavras Palavras Palavras";
+	escreveArquivo(teste8);
+	vector<pair<wstring, int>> esperado_t8 = {
+        {L"as", 1},
+        {L"e", 1},
+        {L"eh", 1},
+        {L"esse", 1},
+        {L"ler", 1},
+        {L"Palavras", 3},
+        {L"palavras", 1},
+        {L"para", 2},
+        {L"teste", 4},
+        {L"todas", 1},
+        {L"um", 1}
+    };
+    REQUIRE( esperado_t8 == contadorPalavras() );
+	escreveArquivo("");
+
+
+}
