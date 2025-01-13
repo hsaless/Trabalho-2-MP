@@ -111,3 +111,25 @@ TEST_CASE( "Testa a contagem de cada palavra", "[single-file]" ) {
 
 
 }
+
+TEST_CASE( "Testa a contagem de cada palavra caso tenha a mesma palavra mas com maiusculo", "[single-file]" ) {
+	string teste7 = "esse eh um\n teste! para. ler\n todas as Palavras e palavras";
+	escreveArquivo(teste7);
+	vector<pair<wstring, int>> esperado_t7 = { 
+        {L"esse", 1}, 
+        {L"eh", 1}, 
+        {L"um", 1}, 
+        {L"teste", 1}, 
+        {L"para", 1}, 
+        {L"ler", 1}, 
+        {L"todas", 1}, 
+        {L"as", 1}, 
+        {L"Palavras", 1},
+        {L"e", 1},
+        {L"palavras", 1}
+    };
+    REQUIRE( esperado_t7 == contadorPalavras() );
+	escreveArquivo("");
+
+
+}
