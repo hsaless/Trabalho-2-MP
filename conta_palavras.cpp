@@ -33,7 +33,13 @@ wstring leArquivo() {
     return texto;  
 }
 
-
+wstring removePontuacao(const wstring& palavra) {
+    size_t fim = palavra.size();
+    while (fim > 0 && iswpunct(palavra[fim - 1])) {
+        --fim;
+    }
+    return palavra.substr(0, fim);
+}
 vector<wstring> separaPalavras(){
     vector<wstring> palavras = {};
     wstring texto = leArquivo();
@@ -47,7 +53,7 @@ vector<wstring> separaPalavras(){
 
         if (!ehLetra) {
             if (!palavra_atual.empty()) {
-                palavras.push_back(palavra_atual);
+                palavras.push_back(removePontuacao(palavra_atual));
             }
             palavra_atual = L""; 
         } else {
@@ -55,7 +61,7 @@ vector<wstring> separaPalavras(){
         }
 
         if ((i + 1) == texto_size && !palavra_atual.empty()) {
-            palavras.push_back(palavra_atual);
+            palavras.push_back(removePontuacao(palavra_atual));
         }
     }
 

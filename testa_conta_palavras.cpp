@@ -75,7 +75,7 @@ TEST_CASE( "Testa se ele retorna todas as palavras", "[single-file]" ) {
 TEST_CASE( "Testa se ele retorna todas as palavras se tem pontuação na frase", "[single-file]" ) {
 	string teste5 = "esse eh um\n teste! para. ler\n todas as palavras";
 	escreveArquivo(teste5);
-	vector<wstring> esperado_t5 = {
+	vector<wstring> esperado_t5 = { 
         L"esse", 
         L"eh", 
         L"um", 
