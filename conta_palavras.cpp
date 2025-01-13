@@ -33,6 +33,7 @@ wstring leArquivo() {
     return texto;  
 }
 
+
 vector<wstring> separaPalavras(){
     vector<wstring> palavras = {};
     wstring texto = leArquivo();
@@ -63,6 +64,8 @@ vector<wstring> separaPalavras(){
 
 
 }
+
+
 
 
 

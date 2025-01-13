@@ -5,6 +5,7 @@
 #include <codecvt>
 #include <locale>
 #include <vector>
+#include <regex>
 using namespace std;
  
 wstring leArquivo( );

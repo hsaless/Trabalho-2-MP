@@ -8,17 +8,21 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-void escreveArquivo(string text) {
-    ofstream inputFile("texto.txt");
-    inputFile << text;
-    inputFile.close();
+
+wstring toWString(const string& str) {
+    wstring_convert<codecvt_utf8_utf16<wchar_t>> converter;
+    return converter.from_bytes(str);
 }
 
 
-wstring toWString(const string& s) {
-    wstring_convert<codecvt_utf8<wchar_t>> converter;
-    return converter.from_bytes(s);
+void escreveArquivo(const string& text) {
+    wofstream outputFile("texto.txt", ios::out | ios::trunc);
+    outputFile.imbue(locale("pt_BR.UTF-8"));
+    wstring wtext = toWString(text); 
+    outputFile << wtext;
+    outputFile.close();
 }
+
 
 
 TEST_CASE( "Testa ler palavra", "[single-file]" ) {
@@ -66,5 +70,24 @@ TEST_CASE( "Testa se ele retorna todas as palavras", "[single-file]" ) {
 	escreveArquivo("");
 
 
-} 
- 
+}
+
+TEST_CASE( "Testa se ele retorna todas as palavras se tem pontuação na frase", "[single-file]" ) {
+	string teste5 = "esse eh um\n teste! para. ler\n todas as palavras";
+	escreveArquivo(teste5);
+	vector<wstring> esperado_t5 = {
+        L"esse", 
+        L"eh", 
+        L"um", 
+        L"teste", 
+        L"para", 
+        L"ler", 
+        L"todas", 
+        L"as", 
+        L"palavras"
+    };
+    REQUIRE( esperado_t5 == separaPalavras() );
+	escreveArquivo("");
+
+
+}
