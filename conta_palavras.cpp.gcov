@@ -1,0 +1,103 @@
+        -:    0:Source:conta_palavras.cpp
+        -:    0:Graph:conta_palavras.gcno
+        -:    0:Data:conta_palavras.gcda
+        -:    0:Runs:1
+        -:    1:/**
+        -:    2: * \file  conta_palavras.cpp
+        -:    3: */
+        -:    4:
+        -:    5: 
+        -:    6:#include "conta_palavras.hpp"
+        -:    7:
+        -:    8:
+        -:    9:/** 
+        -:   10: * @brief verifica situacao do jogo da velha  
+        -:   11: * @author Programador 
+        -:   12: * @param  velha descreve o parametro
+        -:   13: * 
+        -:   14: *  Descrever o que a funcao faz
+        -:   15: */ 
+        -:   16:
+        8:   17:wstring leArquivo() {
+        8:   18:    wifstream inputFile("texto.txt"); 
+        8:   19:    wstring linha;  
+        8:   20:	wstring texto;
+        -:   21:
+        8:   22:    if (inputFile.is_open()) { 
+        8:   23:		bool flag = true;
+       28:   24:        while (getline(inputFile, linha)) {
+       20:   25:            if (!flag) {
+       12:   26:                texto += L"\n";  
+        -:   27:            }
+       20:   28:            texto += linha;  
+       20:   29:            flag = false;  
+        -:   30:        }
+        -:   31:    } 
+        -:   32:
+       16:   33:    return texto;  
+        8:   34:}
+        -:   35:
+       55:   36:wstring removePontuacao(const wstring& palavra) {
+       55:   37:    size_t fim = palavra.size();
+       63:   38:    while (fim > 0 && iswpunct(palavra[fim - 1])) {
+        8:   39:        --fim;
+        -:   40:    }
+       55:   41:    return palavra.substr(0, fim);
+        -:   42:}
+        5:   43:vector<wstring> separaPalavras(){
+        5:   44:    vector<wstring> palavras = {};
+        5:   45:    wstring texto = leArquivo();
+        5:   46:    int texto_size = texto.size();
+        -:   47:
+        5:   48:    wstring palavra_atual = L"";
+        -:   49:    bool ehLetra;
+        -:   50:
+      301:   51:    for (int i = 0; i < texto_size; i++) {
+      296:   52:        ehLetra = (texto[i] != L' ') && (texto[i] != L'\n');
+        -:   53:
+      296:   54:        if (!ehLetra) {
+       60:   55:            if (!palavra_atual.empty()) {
+       50:   56:                palavras.push_back(removePontuacao(palavra_atual));
+        -:   57:            }
+       60:   58:            palavra_atual = L""; 
+        -:   59:        } else {
+      236:   60:            palavra_atual.push_back(texto[i]);
+        -:   61:        }
+        -:   62:
+      296:   63:        if ((i + 1) == texto_size && !palavra_atual.empty()) {
+        5:   64:            palavras.push_back(removePontuacao(palavra_atual));
+        -:   65:        }
+        -:   66:    }
+        -:   67:
+       10:   68:    return palavras;
+        -:   69:
+        -:   70:
+        -:   71:
+        5:   72:}
+        -:   73:
+        3:   74:vector<pair<wstring, int>> contadorPalavras() {
+        3:   75:    vector<wstring> palavras = separaPalavras();
+        3:   76:    vector<pair<wstring, int>> resultado = {};
+       40:   77:    for (const auto& palavra : palavras) {
+       37:   78:        auto it = find_if(resultado.begin(), resultado.end(),[&palavra](const pair<wstring, int>& p) {
+      181:   79:            return p.first == palavra;
+        -:   80:        });
+        -:   81:
+       37:   82:        if (it != resultado.end()) {
+        6:   83:            it->second++;
+        -:   84:        } else {
+       31:   85:            resultado.push_back(make_pair(palavra, 1));
+        -:   86:        }
+        -:   87:    }
+        -:   88:
+        6:   89:    return resultado;
+        -:   90:
+        -:   91:    
+        3:   92:}
+        -:   93:
+        -:   94:
+        -:   95:
+        -:   96:
+        -:   97:
+        -:   98:
+        -:   99:
