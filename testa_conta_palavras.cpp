@@ -133,3 +133,25 @@ TEST_CASE( "Testa a contagem de cada palavra caso tenha a mesma palavra mas com 
 
 
 }
+
+TEST_CASE( "Testa a contagem de cada palavra caso tenha a mesma palavra repetida algumas vezes", "[single-file]" ) {
+	string teste7 = "esse eh um\n teste! para. ler teste\n todas teste as para Palavras teste e palavras Palavras Palavras";
+	escreveArquivo(teste7);
+	vector<pair<wstring, int>> esperado_t7 = { 
+        {L"esse", 1}, 
+        {L"eh", 1}, 
+        {L"um", 1}, 
+        {L"teste", 4}, 
+        {L"para", 2}, 
+        {L"ler", 1}, 
+        {L"todas", 1}, 
+        {L"as", 1}, 
+        {L"Palavras", 3},
+        {L"e", 1},
+        {L"palavras", 1}
+    };
+    REQUIRE( esperado_t7 == contadorPalavras() );
+	escreveArquivo("");
+
+
+}
