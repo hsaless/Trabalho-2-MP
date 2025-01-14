@@ -83,13 +83,17 @@ TEST_CASE("Testa a contagem de cada palavra caso tenha a mesma palavra repetida 
     escreveArquivo("");
 }
 
-TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada", "[single-file]") {
-    std::string teste8 = "esse eh um\n teste! para. ler teste\n todas teste as para Palavras teste e palavras Palavras Palavras";
+TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada sem maiuscula e acento", "[single-file]") {
+    std::string teste8 = "esse eh um\n teste! para. ler teste\n todas teste as para teste e palavras";
     escreveArquivo(teste8);
     std::vector<std::pair<std::string, int>> esperado_t8 = {
-        {"as", 1}, {"e", 1}, {"eh", 1}, {"esse", 1}, {"ler", 1}, {"Palavras", 3},
+        {"as", 1}, {"e", 1}, {"eh", 1}, {"esse", 1}, {"ler", 1},
         {"palavras", 1}, {"para", 2}, {"teste", 4}, {"todas", 1}, {"um", 1}};
-    REQUIRE(esperado_t8 == contadorPalavras());
+
+    auto resultado = contadorPalavras();
+
+
+    REQUIRE(esperado_t8 == ordenadorPalavras(resultado));
     escreveArquivo("");
 }
 

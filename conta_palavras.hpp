@@ -14,3 +14,5 @@ std::string removePontuacaoENumeros(const std::string& palavra);
 std::vector<std::string> separaPalavras();
 
 std::vector<std::pair<std::string, int>> contadorPalavras(); 
+
+std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras);

@@ -97,3 +97,11 @@ std::vector<std::pair<std::string, int>> contadorPalavras() {
 
     return resultado;
 }
+
+std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras){
+    std::sort(contPalavras.begin(), contPalavras.end());
+
+    return contPalavras;
+}
+
+
