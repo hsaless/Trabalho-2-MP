@@ -93,8 +93,8 @@ TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada", "[single
     escreveArquivo("");
 }
 
-TEST_CASE("Testa se ele retorna palavras com", "[single-file]") {
-    std::string teste9 = "esse é um\n teste! para. ler\n todas as palavras";
+TEST_CASE("Testa se difere números de palavras", "[single-file]") {
+    std::string teste9 = "esse é um\n teste! para. 23 01923 2342 ler\n todas as 232palavras";
     escreveArquivo(teste9);
     std::vector<std::string> esperado_t9 = {
         "esse", "é", "um", "teste", "para", "ler", "todas", "as", "palavras"};
