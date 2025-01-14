@@ -6,10 +6,11 @@
 #include <locale>
 #include <vector>
 #include <regex>
-using namespace std;
  
-wstring leArquivo( );
- 
-vector<wstring> separaPalavras();
+std::string leArquivo();
 
-vector<pair<wstring, int>> contadorPalavras();
+std::string removePontuacao(const std::string& palavra);
+
+std::vector<std::string> separaPalavras();
+
+std::vector<std::pair<std::string, int>> contadorPalavras(); 
