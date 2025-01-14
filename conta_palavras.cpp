@@ -32,12 +32,17 @@ std::string leArquivo() {
     return texto;  
 }
 
-std::string removePontuacao(const std::string& palavra) {
-    size_t fim = palavra.size();
-    while (fim > 0 && ispunct(palavra[fim - 1])) {
-        --fim;
+
+
+
+std::string removePontuacaoENumeros(const std::string& palavra) {
+    std::string palavra_nova = "";
+    for(int i = 0; i < palavra.size(); i++){
+        if(!isdigit(palavra[i]) && !ispunct(palavra[i])){
+            palavra_nova += palavra[i];
+        }
     }
-    return palavra.substr(0, fim);
+    return palavra_nova;
 }
 
 std::vector<std::string> separaPalavras() {
@@ -53,7 +58,11 @@ std::vector<std::string> separaPalavras() {
 
         if (!ehLetra) {
             if (!palavra_atual.empty()) {
-                palavras.push_back(removePontuacao(palavra_atual));
+                palavra_atual = removePontuacaoENumeros(palavra_atual);
+                if(!palavra_atual.empty()){
+                    palavras.push_back(palavra_atual);
+                }
+                
             }
             palavra_atual = ""; 
         } else {
@@ -61,7 +70,10 @@ std::vector<std::string> separaPalavras() {
         }
 
         if ((i + 1) == texto_size && !palavra_atual.empty()) {
-            palavras.push_back(removePontuacao(palavra_atual));
+            palavra_atual = removePontuacaoENumeros(palavra_atual);
+            if(!palavra_atual.empty()){
+                palavras.push_back(palavra_atual);
+            }
         }
     }
 

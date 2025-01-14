@@ -9,7 +9,7 @@
  
 std::string leArquivo();
 
-std::string removePontuacao(const std::string& palavra);
+std::string removePontuacaoENumeros(const std::string& palavra);
 
 std::vector<std::string> separaPalavras();
 
