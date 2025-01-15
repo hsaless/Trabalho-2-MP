@@ -7,6 +7,8 @@
 #include <vector>
 #include <regex>
 #include <unordered_map>
+#include <tuple>
+#include <algorithm>
 
 std::wstring stringToWstring(const std::string& str);
 
@@ -19,5 +21,7 @@ std::string removePontuacaoENumeros(const std::string& palavra);
 std::vector<std::string> separaPalavras();
 
 std::vector<std::pair<std::string, int>> contadorPalavras(); 
+
+std::string normalizaPalavra(const std::string& palavra);
 
 std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras);

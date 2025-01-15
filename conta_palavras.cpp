@@ -107,7 +107,7 @@ std::vector<std::pair<std::string, int>> contadorPalavras() {
 
     return resultado;
 }
-std::string removeAccentsAndToLower(const std::string& palavra) {
+std::string normalizaPalavra(const std::string& palavra) {
     std::unordered_map<wchar_t, wchar_t> letras = {
         {L'á', L'a'}, {L'à', L'a'}, {L'â', L'a'}, {L'ã', L'a'}, {L'ä', L'a'},
         {L'é', L'e'}, {L'è', L'e'}, {L'ê', L'e'}, {L'ë', L'e'},
@@ -136,9 +136,31 @@ std::string removeAccentsAndToLower(const std::string& palavra) {
     return wstringToString(palavra_final);
 }
 std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras){
-    std::sort(contPalavras.begin(), contPalavras.end());
+    
+    std::vector<std::tuple<std::string, std::string, int>> resultado;
 
-    return contPalavras;
+    for (int i = 0; i < contPalavras.size(); ++i) {
+        std::string palavraOriginal = contPalavras[i].first;
+        int valor = contPalavras[i].second;
+        std::string palavraNormalizada = normalizaPalavra(palavraOriginal);
+
+        resultado.push_back({palavraNormalizada, palavraOriginal, valor});
+    }
+
+    std::sort(resultado.begin(), resultado.end());
+
+    std::vector<std::pair<std::string, int>> contPalavrasOrdenado;
+
+    for (int i = 0; i < resultado.size(); ++i) {
+        std::string palavraOriginal = std::get<1>(resultado[i]);
+        int valor = std::get<2>(resultado[i]);
+
+       contPalavrasOrdenado.push_back({palavraOriginal, valor});
+    }
+
+
+
+    return contPalavrasOrdenado;
 }
 
 
