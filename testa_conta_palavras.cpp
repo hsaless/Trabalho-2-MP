@@ -121,15 +121,29 @@ TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada com maiusc
 }
 
 TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada com maiuscula e com acento", "[single-file]") {
-    std::string teste11 = "esse é um\n teste! para. ler teste\n Todas teste As para teste e palavras";
-    escreveArquivo(teste11);
-    std::vector<std::pair<std::string, int>> esperado_t11 = {
+    std::string teste12 = "esse é um\n teste! para. ler teste\n Todas teste As para teste e palavras";
+    escreveArquivo(teste12);
+    std::vector<std::pair<std::string, int>> esperado_t12 = {
         {"As", 1}, {"e", 1}, {"é", 1}, {"esse", 1}, {"ler", 1},
         {"palavras", 1}, {"para", 2}, {"teste", 4}, {"Todas", 1}, {"um", 1}};
 
     auto resultado = contadorPalavras();
 
 
-    REQUIRE(esperado_t11 == ordenadorPalavras(resultado));
+    REQUIRE(esperado_t12 == ordenadorPalavras(resultado));
+    escreveArquivo("");
+}
+
+TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada com ç", "[single-file]") {
+    std::string teste13 = "esse é um\n teste! para. ler teste\n Todas paçoca As para teste e palavras";
+    escreveArquivo(teste13);
+    std::vector<std::pair<std::string, int>> esperado_t13 = {
+        {"As", 1}, {"e", 1}, {"é", 1}, {"esse", 1}, {"ler", 1}, {"paçoca", 1},
+        {"palavras", 1}, {"para", 2}, {"teste", 3}, {"Todas", 1}, {"um", 1}};
+
+    auto resultado = contadorPalavras();
+
+
+    REQUIRE(esperado_t13 == ordenadorPalavras(resultado));
     escreveArquivo("");
 }
