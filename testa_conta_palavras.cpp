@@ -159,7 +159,7 @@ TEST_CASE("Testa se o retorno é formatado corretamente", "[single-file]") {
 
     auto palavras_ordenadas = ordenadorPalavras(resultado);
 
-    std::string resultado_formatado = "As: 1\ne: 1\né: 1\nesse: 1\nler: 1\npaçoca: 1\npalavras: 1\npara: 2\nteste: 3\nTodas: 1\nUm: 1";
+    std::string resultado_formatado = "As: 1\ne: 1\né: 1\nesse: 1\nler: 1\npaçoca: 1\npalavras: 1\npara: 2\nteste: 3\nTodas: 1\num: 1\n";
 
 
     REQUIRE(resultado_formatado == formataResposta(palavras_ordenadas));

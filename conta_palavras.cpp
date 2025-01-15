@@ -166,6 +166,13 @@ std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair
 std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas){
     std::string resposta_formatada = "";
 
+    for(int i = 0; i < palavrasOrdenadas.size(); i++){
+        std::string palavra = palavrasOrdenadas[i].first;
+        std::string valor = std::to_string(palavrasOrdenadas[i].second);
+        resposta_formatada += palavra + ": " + valor + "\n";
+
+    }
+
     return resposta_formatada; 
 
 }
