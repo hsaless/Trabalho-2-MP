@@ -14,32 +14,31 @@
  */ 
 
 std::wstring stringToWstring(const std::string& str) {
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    return converter.from_bytes(str);
+  std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+  return converter.from_bytes(str);
 }
 
 std::string wstringToString(const std::wstring& wstr) {
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    return converter.to_bytes(wstr);
+  std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+  return converter.to_bytes(wstr);
 }
 
 std::string leArquivo() {
-    std::ifstream inputFile("texto.txt"); 
-    std::string linha;  
-    std::string texto;
+  std::ifstream inputFile("texto.txt"); 
+  std::string linha;  
+  std::string texto;
+  if (inputFile.is_open()) { 
+  bool flag = true;
+    while (getline(inputFile, linha)) {
+      if (!flag) {
+        texto += "\n";  
+      }
+      texto += linha;  
+      flag = false;  
+    }
+  } 
 
-    if (inputFile.is_open()) { 
-        bool flag = true;
-        while (getline(inputFile, linha)) {
-            if (!flag) {
-                texto += "\n";  
-            }
-            texto += linha;  
-            flag = false;  
-        }
-    } 
-
-    return texto;  
+  return texto;  
 }
 std::string removePontuacaoENumeros(const std::string& palavra) {
     std::string palavra_nova = "";

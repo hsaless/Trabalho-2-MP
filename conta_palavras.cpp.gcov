@@ -1,7 +1,7 @@
         -:    0:Source:conta_palavras.cpp
         -:    0:Graph:conta_palavras.gcno
         -:    0:Data:conta_palavras.gcda
-        -:    0:Runs:2
+        -:    0:Runs:3
         -:    1:/**
         -:    2: * \file conta_palavras.cpp
         -:    3: */
@@ -17,95 +17,95 @@
         -:   13: *  Descrever o que a funcao faz
         -:   14: */ 
         -:   15:
-      104:   16:std::wstring stringToWstring(const std::string& str) {
-      104:   17:    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      208:   18:    return converter.from_bytes(str);
-      104:   19:}
+      156:   16:std::wstring stringToWstring(const std::string& str) {
+      156:   17:    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      312:   18:    return converter.from_bytes(str);
+      156:   19:}
         -:   20:
-      104:   21:std::string wstringToString(const std::wstring& wstr) {
-      104:   22:    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      208:   23:    return converter.to_bytes(wstr);
-      104:   24:}
+      156:   21:std::string wstringToString(const std::wstring& wstr) {
+      156:   22:    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      312:   23:    return converter.to_bytes(wstr);
+      156:   24:}
         -:   25:
-       28:   26:std::string leArquivo() {
-       28:   27:    std::ifstream inputFile("texto.txt"); 
-       28:   28:    std::string linha;  
-       28:   29:    std::string texto;
+       42:   26:std::string leArquivo() {
+       42:   27:    std::ifstream inputFile("texto.txt"); 
+       42:   28:    std::string linha;  
+       42:   29:    std::string texto;
         -:   30:
-       28:   31:    if (inputFile.is_open()) { 
-       28:   32:        bool flag = true;
-      104:   33:        while (getline(inputFile, linha)) {
-       76:   34:            if (!flag) {
-       48:   35:                texto += "\n";  
+       42:   31:    if (inputFile.is_open()) { 
+       42:   32:        bool flag = true;
+      156:   33:        while (getline(inputFile, linha)) {
+      114:   34:            if (!flag) {
+       72:   35:                texto += "\n";  
         -:   36:            }
-       76:   37:            texto += linha;  
-       76:   38:            flag = false;  
+      114:   37:            texto += linha;  
+      114:   38:            flag = false;  
         -:   39:        }
         -:   40:    } 
         -:   41:
-       56:   42:    return texto;  
-       28:   43:}
-      274:   44:std::string removePontuacaoENumeros(const std::string& palavra) {
-      274:   45:    std::string palavra_nova = "";
-     1426:   46:    for(int i = 0; i < palavra.size(); i++){
-     1152:   47:        if(!isdigit(palavra[i]) && !ispunct(palavra[i])){
-     1084:   48:            palavra_nova += palavra[i];
+       84:   42:    return texto;  
+       42:   43:}
+      411:   44:std::string removePontuacaoENumeros(const std::string& palavra) {
+      411:   45:    std::string palavra_nova = "";
+     2139:   46:    for(int i = 0; i < palavra.size(); i++){
+     1728:   47:        if(!isdigit(palavra[i]) && !ispunct(palavra[i])){
+     1626:   48:            palavra_nova += palavra[i];
         -:   49:        }
         -:   50:    }
-      274:   51:    return palavra_nova;
+      411:   51:    return palavra_nova;
     =====:   52:}
-       22:   53:std::vector<std::string> separaPalavras() {
-       22:   54:    std::vector<std::string> palavras = {};
-       22:   55:    std::string texto = leArquivo();
-       22:   56:    int texto_size = texto.size();
+       33:   53:std::vector<std::string> separaPalavras() {
+       33:   54:    std::vector<std::string> palavras = {};
+       33:   55:    std::string texto = leArquivo();
+       33:   56:    int texto_size = texto.size();
         -:   57:
-       22:   58:    std::string palavra_atual = "";
+       33:   58:    std::string palavra_atual = "";
         -:   59:    bool ehLetra;
         -:   60:
-     1470:   61:    for (int i = 0; i < texto_size; i++) {
-     1448:   62:        ehLetra = (texto[i] != ' ') && (texto[i] != '\n');
+     2205:   61:    for (int i = 0; i < texto_size; i++) {
+     2172:   62:        ehLetra = (texto[i] != ' ') && (texto[i] != '\n');
         -:   63:
-     1448:   64:        if (!ehLetra) {
-      296:   65:            if (!palavra_atual.empty()) {
-      252:   66:                palavra_atual = removePontuacaoENumeros(palavra_atual);
-      252:   67:                if(!palavra_atual.empty()){
-      246:   68:                    palavras.push_back(palavra_atual);
+     2172:   64:        if (!ehLetra) {
+      444:   65:            if (!palavra_atual.empty()) {
+      378:   66:                palavra_atual = removePontuacaoENumeros(palavra_atual);
+      378:   67:                if(!palavra_atual.empty()){
+      369:   68:                    palavras.push_back(palavra_atual);
         -:   69:                }
         -:   70:                
         -:   71:            }
-      296:   72:            palavra_atual = ""; 
+      444:   72:            palavra_atual = ""; 
         -:   73:        } else {
-     1152:   74:            palavra_atual.push_back(texto[i]);
+     1728:   74:            palavra_atual.push_back(texto[i]);
         -:   75:        }
         -:   76:
-     1448:   77:        if ((i + 1) == texto_size && !palavra_atual.empty()) {
-       22:   78:            palavra_atual = removePontuacaoENumeros(palavra_atual);
-       22:   79:            if(!palavra_atual.empty()){
-       22:   80:                palavras.push_back(palavra_atual);
+     2172:   77:        if ((i + 1) == texto_size && !palavra_atual.empty()) {
+       33:   78:            palavra_atual = removePontuacaoENumeros(palavra_atual);
+       33:   79:            if(!palavra_atual.empty()){
+       33:   80:                palavras.push_back(palavra_atual);
         -:   81:            }
         -:   82:        }
         -:   83:    }
         -:   84:
-       44:   85:    return palavras;
-       22:   86:}
-       16:   87:std::vector<std::pair<std::string, int>> contadorPalavras() {
-       16:   88:    std::vector<std::string> palavras = separaPalavras();
-       16:   89:    std::vector<std::pair<std::string, int>> resultado = {};
-      230:   90:    for (const auto& palavra : palavras) {
-      214:   91:        auto it = find_if(resultado.begin(), resultado.end(), [&palavra](const std::pair<std::string, int>& p) {
-     1006:   92:            return p.first == palavra;
+       66:   85:    return palavras;
+       33:   86:}
+       24:   87:std::vector<std::pair<std::string, int>> contadorPalavras() {
+       24:   88:    std::vector<std::string> palavras = separaPalavras();
+       24:   89:    std::vector<std::pair<std::string, int>> resultado = {};
+      345:   90:    for (const auto& palavra : palavras) {
+      321:   91:        auto it = find_if(resultado.begin(), resultado.end(), [&palavra](const std::pair<std::string, int>& p) {
+     1509:   92:            return p.first == palavra;
         -:   93:        });
         -:   94:
-      214:   95:        if (it != resultado.end()) {
-       48:   96:            it->second++;
+      321:   95:        if (it != resultado.end()) {
+       72:   96:            it->second++;
         -:   97:        } else {
-      166:   98:            resultado.push_back(std::make_pair(palavra, 1));
+      249:   98:            resultado.push_back(std::make_pair(palavra, 1));
         -:   99:        }
         -:  100:    }
         -:  101:
-       32:  102:    return resultado;
-       16:  103:}
-      104:  104:std::string normalizaPalavra(const std::string& palavra) {
+       48:  102:    return resultado;
+       24:  103:}
+      156:  104:std::string normalizaPalavra(const std::string& palavra) {
         -:  105:    std::unordered_map<wchar_t, wchar_t> letras = {
         -:  106:        {L'á', L'a'}, {L'à', L'a'}, {L'â', L'a'}, {L'ã', L'a'}, {L'ä', L'a'},
         -:  107:        {L'é', L'e'}, {L'è', L'e'}, {L'ê', L'e'}, {L'ë', L'e'},
@@ -119,42 +119,42 @@
         -:  115:        {L'Ó', L'o'}, {L'Ò', L'o'}, {L'Ô', L'o'}, {L'Õ', L'o'}, {L'Ö', L'o'},
         -:  116:        {L'Ú', L'u'}, {L'Ù', L'u'}, {L'Û', L'u'}, {L'Ü', L'u'},
         -:  117:        {L'Ç', L'c'}
-      208:  118:    };
-      104:  119:    std::wstring wstr = stringToWstring(palavra);
-      104:  120:    std::wstring palavra_final;
-      482:  121:    for (wchar_t c : wstr) {
-      378:  122:        if (letras.find(c) != letras.end()) {
-       10:  123:            palavra_final += letras[c];
+      312:  118:    };
+      156:  119:    std::wstring wstr = stringToWstring(palavra);
+      156:  120:    std::wstring palavra_final;
+      723:  121:    for (wchar_t c : wstr) {
+      567:  122:        if (letras.find(c) != letras.end()) {
+       15:  123:            palavra_final += letras[c];
         -:  124:        } else {
-      368:  125:            palavra_final += std::towlower(c);
+      552:  125:            palavra_final += std::towlower(c);
         -:  126:        }
         -:  127:    }
-      208:  128:    return wstringToString(palavra_final);
-      104:  129:}
-       10:  130:std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras){
-       10:  131:    std::vector<std::tuple<std::string, std::string, int>> resultado;
-      114:  132:    for (int i = 0; i < contPalavras.size(); ++i) {
-      104:  133:        std::string palavraOriginal = contPalavras[i].first;
-      104:  134:        int valor = contPalavras[i].second;
-      104:  135:        std::string palavraNormalizada = normalizaPalavra(palavraOriginal);
-      104:  136:        resultado.push_back({palavraNormalizada, palavraOriginal, valor});
-      104:  137:    }
-       10:  138:    std::sort(resultado.begin(), resultado.end());
-       10:  139:    std::vector<std::pair<std::string, int>> contPalavrasOrdenado;
-      114:  140:    for (int i = 0; i < resultado.size(); ++i) {
-      104:  141:        std::string palavraOriginal = std::get<1>(resultado[i]);
-      104:  142:        int valor = std::get<2>(resultado[i]);
+      312:  128:    return wstringToString(palavra_final);
+      156:  129:}
+       15:  130:std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras){
+       15:  131:    std::vector<std::tuple<std::string, std::string, int>> resultado;
+      171:  132:    for (int i = 0; i < contPalavras.size(); ++i) {
+      156:  133:        std::string palavraOriginal = contPalavras[i].first;
+      156:  134:        int valor = contPalavras[i].second;
+      156:  135:        std::string palavraNormalizada = normalizaPalavra(palavraOriginal);
+      156:  136:        resultado.push_back({palavraNormalizada, palavraOriginal, valor});
+      156:  137:    }
+       15:  138:    std::sort(resultado.begin(), resultado.end());
+       15:  139:    std::vector<std::pair<std::string, int>> contPalavrasOrdenado;
+      171:  140:    for (int i = 0; i < resultado.size(); ++i) {
+      156:  141:        std::string palavraOriginal = std::get<1>(resultado[i]);
+      156:  142:        int valor = std::get<2>(resultado[i]);
         -:  143:
-      104:  144:       contPalavrasOrdenado.push_back({palavraOriginal, valor});
-      104:  145:    }
-       20:  146:    return contPalavrasOrdenado;
-       10:  147:}
-        2:  148:std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas){
-        2:  149:    std::string resposta_formatada = "";
-       24:  150:    for(int i = 0; i < palavrasOrdenadas.size(); i++){
-       22:  151:        std::string palavra = palavrasOrdenadas[i].first;
-       22:  152:        std::string valor = std::to_string(palavrasOrdenadas[i].second);
-       22:  153:        resposta_formatada += palavra + ": " + valor + "\n";
-       22:  154:    }
-        2:  155:    return resposta_formatada; 
+      156:  144:       contPalavrasOrdenado.push_back({palavraOriginal, valor});
+      156:  145:    }
+       30:  146:    return contPalavrasOrdenado;
+       15:  147:}
+        3:  148:std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas){
+        3:  149:    std::string resposta_formatada = "";
+       36:  150:    for(int i = 0; i < palavrasOrdenadas.size(); i++){
+       33:  151:        std::string palavra = palavrasOrdenadas[i].first;
+       33:  152:        std::string valor = std::to_string(palavrasOrdenadas[i].second);
+       33:  153:        resposta_formatada += palavra + ": " + valor + "\n";
+       33:  154:    }
+        3:  155:    return resposta_formatada; 
     =====:  156:}
