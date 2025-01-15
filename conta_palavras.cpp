@@ -41,10 +41,6 @@ std::string leArquivo() {
 
     return texto;  
 }
-
-
-
-
 std::string removePontuacaoENumeros(const std::string& palavra) {
     std::string palavra_nova = "";
     for(int i = 0; i < palavra.size(); i++){
@@ -54,7 +50,6 @@ std::string removePontuacaoENumeros(const std::string& palavra) {
     }
     return palavra_nova;
 }
-
 std::vector<std::string> separaPalavras() {
     std::vector<std::string> palavras = {};
     std::string texto = leArquivo();
@@ -89,7 +84,6 @@ std::vector<std::string> separaPalavras() {
 
     return palavras;
 }
-
 std::vector<std::pair<std::string, int>> contadorPalavras() {
     std::vector<std::string> palavras = separaPalavras();
     std::vector<std::pair<std::string, int>> resultado = {};
@@ -122,7 +116,6 @@ std::string normalizaPalavra(const std::string& palavra) {
         {L'Ú', L'u'}, {L'Ù', L'u'}, {L'Û', L'u'}, {L'Ü', L'u'},
         {L'Ç', L'c'}
     };
-
     std::wstring wstr = stringToWstring(palavra);
     std::wstring palavra_final;
     for (wchar_t c : wstr) {
@@ -132,48 +125,32 @@ std::string normalizaPalavra(const std::string& palavra) {
             palavra_final += std::towlower(c);
         }
     }
-
     return wstringToString(palavra_final);
 }
 std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras){
-    
     std::vector<std::tuple<std::string, std::string, int>> resultado;
-
     for (int i = 0; i < contPalavras.size(); ++i) {
         std::string palavraOriginal = contPalavras[i].first;
         int valor = contPalavras[i].second;
         std::string palavraNormalizada = normalizaPalavra(palavraOriginal);
-
         resultado.push_back({palavraNormalizada, palavraOriginal, valor});
     }
-
     std::sort(resultado.begin(), resultado.end());
-
     std::vector<std::pair<std::string, int>> contPalavrasOrdenado;
-
     for (int i = 0; i < resultado.size(); ++i) {
         std::string palavraOriginal = std::get<1>(resultado[i]);
         int valor = std::get<2>(resultado[i]);
 
        contPalavrasOrdenado.push_back({palavraOriginal, valor});
     }
-
-
-
     return contPalavrasOrdenado;
 }
-
 std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas){
     std::string resposta_formatada = "";
-
     for(int i = 0; i < palavrasOrdenadas.size(); i++){
         std::string palavra = palavrasOrdenadas[i].first;
         std::string valor = std::to_string(palavrasOrdenadas[i].second);
         resposta_formatada += palavra + ": " + valor + "\n";
-
     }
-
     return resposta_formatada; 
-
 }
-

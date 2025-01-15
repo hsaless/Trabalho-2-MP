@@ -8,7 +8,7 @@
 #include <regex>
 #include <unordered_map>
 #include <tuple>
-#include <algorithm>
+
 
 std::wstring stringToWstring(const std::string& str);
 

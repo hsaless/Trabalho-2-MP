@@ -17,11 +17,12 @@ test: testa_conta_palavras
 cpplint: conta_palavras.cpp testa_conta_palavras.cpp conta_palavras.hpp
 	python3 cpplint.py --exclude=catch.hpp *.*
 
-gcov: conta_palavras.cpp testa_conta_palavras.cpp conta_palavras.hpp
+gcov: testa_conta_palavras.cpp   conta_palavras.cpp conta_palavras.hpp 
 	g++ -std=c++11 -Wall -fprofile-arcs -ftest-coverage -c conta_palavras.cpp
 	g++ -std=c++11 -Wall -fprofile-arcs -ftest-coverage conta_palavras.o testa_conta_palavras.cpp -o testa_conta_palavras
 	./testa_conta_palavras
-	gcov testa_conta_palavras.cpp conta_palavras.cpp
+	gcov -c conta_palavras.cpp
+	find . -type f -name "*.gcov" ! -name "conta_palavras.cpp.gcov" ! -name "conta_palavras.hpp.gcov" -exec rm -f {} +
 
 debug: conta_palavras.cpp testa_conta_palavras.cpp conta_palavras.hpp
 	g++ -std=c++11 -Wall -g -c conta_palavras.cpp
