@@ -6,9 +6,11 @@
 
 
 /**
- * @brief Converts a std::string to a std::wstring.
- * @param str The input string.
- * @return The converted wide string.
+ * @brief a função le uma string e transforma ela em wstring. 
+ * 
+ *  - o input é uma string qualquer.
+ *
+ * @return std::wstring a string convertida em wstring.
  */
 std::wstring stringToWstring(const std::string& str) {
   std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
@@ -16,9 +18,11 @@ std::wstring stringToWstring(const std::string& str) {
 }
 
 /**
- * @brief Converts a std::wstring to a std::string.
- * @param wstr The input wide string.
- * @return The converted string.
+ * @brief a função le uma wstring e transforma ela em string.
+ * 
+ *  - o input é uma wstring qualquer.
+ *
+ * @return std::string a wstring convertida em string.
  */
 std::string wstringToString(const std::wstring& wstr) {
   std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
@@ -26,8 +30,11 @@ std::string wstringToString(const std::wstring& wstr) {
 }
 
 /**
- * @brief Reads the content of the file "texto.txt".
- * @return The file content as a string.
+ * @brief a le o que conteúdo de um arquivo.txt.
+ * 
+ *  - não tem input mas é usado o arquivo texto.txt.
+ *
+ * @return std::string a string contendo o conteúdo do texto.
  */
 std::string leArquivo() {
   std::ifstream inputFile("texto.txt");
@@ -47,9 +54,11 @@ std::string leArquivo() {
 }
 
 /**
- * @brief Removes punctuation and numbers from a string.
- * @param palavra The input string.
- * @return The cleaned string.
+ * @brief a função lê uma string e retorna a mesma string sem números e pontuação.
+ * 
+ *  @param std::string string que vai ter seus pontos e números removidos.
+ *
+ * @return std::string a string tendo as pontuações e números retirados.
  */
 std::string removePontuacaoENumeros(const std::string& palavra) {
   std::string palavra_nova = "";
@@ -62,8 +71,11 @@ std::string removePontuacaoENumeros(const std::string& palavra) {
 }
 
 /**
- * @brief Splits the text into words.
- * @return A vector containing the words.
+ * @brief a função lê uma string e retorna um vetor com as palavras separadas da string lida no arquivo.
+ * 
+ *  - não tem input.
+ *
+ * @return std::vector<std::string> um vetor contendo em cada posição sua uma palavra do arquivo na ordem que elas aparecem.
  */
 std::vector<std::string> separaPalavras() {
   std::vector<std::string> palavras = {};
@@ -100,8 +112,12 @@ std::vector<std::string> separaPalavras() {
 }
 
 /**
- * @brief Counts the occurrences of each word in the text.
- * @return A vector of pairs containing words and their counts.
+ * @brief Conta a ocorrência de cada palavra no arquivo.
+ *
+ *  -  diferencia os acentos e entre maiúscula e minúscula.
+ *
+ * @return std::vector<std::pair<std::string, int>> um vetor de pair 
+ * em que em cada pair o primeiro elemento é a palavra e o segundo o número de ocorrências dela.
  */
 std::vector<std::pair<std::string, int>> contadorPalavras() {
   std::vector<std::string> palavras = separaPalavras();
@@ -123,9 +139,11 @@ std::vector<std::pair<std::string, int>> contadorPalavras() {
 }
 
 /**
- * @brief Normalizes a word by converting accented characters to unaccented ones.
- * @param palavra The input word.
- * @return The normalized word.
+ * @brief Normaliza uma palavra retirando o acento de um caracter e deixando ele minúsculo.
+ *
+ * @param std::string uma string contendo uma única palavra.
+ *
+ * @return std::string a string contendo a palavra normalizada sem acentos e sem letras maiúsuclas.
  */
 std::string normalizaPalavra(const std::string& palavra) {
   std::unordered_map<wchar_t, wchar_t> letras = {
@@ -155,9 +173,12 @@ std::string normalizaPalavra(const std::string& palavra) {
 }
 
 /**
- * @brief Sorts the word-count pairs.
- * @param contPalavras A reference to the word-count pairs vector.
- * @return A sorted vector of word-count pairs.
+ * @brief Ordena o vetor de pair contendo cada palavra e a quantidade de suas ocorrências por ordem alfabética.
+ *
+ * @param std::vector<std::pair<std::string, int>> um vetor de pair em que o primeiro elemento é uma palavra
+ * e o segundo elemento é a quantidade de ocorrências da palavra.
+ *
+ * @return std::vector<std::pair<std::string, int>> um vetor de pair ordenado alfabeticamente.
  */
 std::vector<std::pair<std::string, int>> ordenadorPalavras(
     std::vector<std::pair<std::string, int>>& contPalavras) {
@@ -180,9 +201,11 @@ std::vector<std::pair<std::string, int>> ordenadorPalavras(
 }
 
 /**
- * @brief Formats the sorted word-count pairs into a string.
- * @param palavrasOrdenadas A vector of sorted word-count pairs.
- * @return A formatted string of word counts.
+ * @brief Formata o vetor de pair contendo cada palavra e sua ocorrência para o formato desejado.
+ *
+ * @param std::vector<std::pair<std::string, int>> um vetor de pair ordenado em ordem alfabética.
+ *
+ * @return std::string uma string contendo as palavras e seu número de ocorrência ordenadas alfabéticamente e formatadas para resposta.
  */
 std::string formataResposta(
     std::vector<std::pair<std::string, int>> palavrasOrdenadas) {
