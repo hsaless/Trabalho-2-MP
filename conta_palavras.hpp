@@ -6,6 +6,11 @@
 #include <locale>
 #include <vector>
 #include <regex>
+#include <unordered_map>
+
+std::wstring stringToWstring(const std::string& str);
+
+std::string wstringToString(const std::wstring& wstr);
  
 std::string leArquivo();
 
