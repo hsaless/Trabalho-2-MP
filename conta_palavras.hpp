@@ -25,3 +25,5 @@ std::vector<std::pair<std::string, int>> contadorPalavras();
 std::string normalizaPalavra(const std::string& palavra);
 
 std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair<std::string, int>>& contPalavras);
+
+std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas);

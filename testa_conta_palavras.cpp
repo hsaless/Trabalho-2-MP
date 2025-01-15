@@ -147,3 +147,21 @@ TEST_CASE("Testa se o retorno da contagem de cada palavra é ordenada com ç", "
     REQUIRE(esperado_t13 == ordenadorPalavras(resultado));
     escreveArquivo("");
 }
+
+TEST_CASE("Testa se o retorno é formatado corretamente", "[single-file]") {
+    std::string teste14 = "esse é um\n teste! para. ler teste\n Todas paçoca As para teste e palavras";
+    escreveArquivo(teste14);
+    std::vector<std::pair<std::string, int>> esperado_t13 = {
+        {"As", 1}, {"e", 1}, {"é", 1}, {"esse", 1}, {"ler", 1}, {"paçoca", 1},
+        {"palavras", 1}, {"para", 2}, {"teste", 3}, {"Todas", 1}, {"um", 1}};
+
+    auto resultado = contadorPalavras();
+
+    auto palavras_ordenadas = ordenadorPalavras(resultado);
+
+    std::string resultado_formatado = "As: 1\ne: 1\né: 1\nesse: 1\nler: 1\npaçoca: 1\npalavras: 1\npara: 2\nteste: 3\nTodas: 1\nUm: 1";
+
+
+    REQUIRE(resultado_formatado == formataResposta(palavras_ordenadas));
+    escreveArquivo("");
+}

@@ -163,4 +163,10 @@ std::vector<std::pair<std::string, int>> ordenadorPalavras(std::vector<std::pair
     return contPalavrasOrdenado;
 }
 
+std::string formataResposta(std::vector<std::pair<std::string, int>> palavrasOrdenadas){
+    std::string resposta_formatada = "";
+
+    return resposta_formatada; 
+
+}
 
