@@ -1,6 +1,10 @@
-﻿com o g++  make e demais programas instalados 
+﻿O objetivo desse projeto é ler um arquivo txt 
+e retornar a quantidade cada palavra e sua quantidade
+diferenciando acentos e letras maiúsculas.
+para fácil execução do teste foi usada uma wsl 
+no sistema operacional linux use no terminal sudo apt install build-essential
+esse comando irá instalar todos os programas necessários para execução e teste do código
 com todos os arquivos no mesmo diretório
-digite "make" neste diretório 
-para cada regra você pode digitar make e nome da regra ex. make cppcheck
-
-fazer um git commit para cada teste ou código adicionado a
+digite "make" neste diretório, isso irá checar se o teste deu certo
+além disso make e outros comandos fazem outras coisas, como make gcov gera o teste de cobertura
+e o comando make cpplint mostra o que o código não segue nos padrões cpplint

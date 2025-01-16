@@ -170,7 +170,7 @@ std::string normalizaPalavra(const std::string& palavra) {
     }
   }
   return wstringToString(palavra_final);
-}
+} 
 
 /**
  * @brief Ordena o vetor de pair contendo cada palavra e a quantidade de suas ocorrências por ordem alfabética.
