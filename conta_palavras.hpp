@@ -13,6 +13,7 @@
 #include <regex>
 #include <unordered_map>
 #include <tuple>
+#include <utility>
 
 /**
  * @brief a função le uma string e transforma ela em wstring. 
